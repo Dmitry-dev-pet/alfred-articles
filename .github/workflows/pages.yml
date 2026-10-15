@@ -1,0 +1,61 @@
+name: Publish Alfred essay previews
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.repository == 'Dmitry-dev-pet/alfred-articles'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout selected reader-site source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Enforce site-only publication allowlist
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected="$RUNNER_TEMP/expected-files.txt"
+          actual="$RUNNER_TEMP/actual-files.txt"
+          printf '%s\n' \
+            .github/workflows/pages.yml \
+            _config.yml \
+            _layouts/default.html \
+            _layouts/article.html \
+            assets/site.css \
+            index.html \
+            robots.txt \
+            continuity.md \
+            codex-to-chatgpt.md \
+            curiosity.md | sort > "$expected"
+          git ls-files | sort > "$actual"
+          diff -u "$expected" "$actual"
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Render selected articles with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+      - name: Upload the rendered site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./_site
+      - name: Publish the selected previews
+        id: deployment
+        uses: actions/deploy-pages@v4

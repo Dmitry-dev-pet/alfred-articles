@@ -1,0 +1,8 @@
+title: "Статьи об Альфреде"
+description: "Три самостоятельные статьи о совместной работе с ИИ."
+url: "https://dmitry-dev-pet.github.io"
+baseurl: "/alfred-articles"
+markdown: kramdown
+kramdown:
+  input: GFM
+permalink: pretty

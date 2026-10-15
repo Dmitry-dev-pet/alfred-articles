@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="color-scheme" content="light dark">
+<title>{{ page.title | escape }} — Статьи об Альфреде</title>
+<meta name="description" content="{{ page.subtitle | default: site.description | escape }}">
+<link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}">
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к тексту</a>
+<header class="site-header"><div class="site-header-inner">
+<a class="brand" href="{{ '/' | relative_url }}">АЛЬФРЕД <span>/ СТАТЬИ</span></a>
+<nav class="top-links" aria-label="Навигация">
+<a href="{{ '/' | relative_url }}">Все статьи</a>
+<a href="https://github.com/Dmitry-dev-pet/truthrail-core" rel="noopener noreferrer">Truthrail Core ↗</a>
+</nav>
+</div></header>
+<main class="page-shell" id="main">{{ content }}</main>
+<footer class="page-footer"><div class="page-footer-inner"><span>Предварительные редакции для чтения · 2026</span><span>Статьи не опубликованы на Хабре</span></div></footer>
+</body>
+</html>

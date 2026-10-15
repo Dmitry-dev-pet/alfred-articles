@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<article class="article">
+<header class="article-head">
+<div class="eyebrow">{{ page.category | escape }} · Авторская редакция</div>
+<h1>{{ page.title | escape }}</h1>
+<p class="article-subtitle">{{ page.subtitle | escape }}</p>
+<div class="article-meta"><span>{{ page.revision | escape }}</span><span>≈ {{ page.reading_minutes }} мин чтения</span><span>Черновик · 15 октября 2026</span></div>
+</header>
+<details class="toc">
+<summary>Содержание</summary>
+<ol>{% for section in page.toc %}<li><a href="#{{ section.id | escape }}">{{ section.title | escape }}</a></li>{% endfor %}</ol>
+</details>
+<div class="prose">{{ content }}</div>
+<footer class="article-ending"><p>Это предварительная редакция для чтения и обсуждения. Текст ещё может измениться.</p><a href="{{ '/' | relative_url }}">← К остальным статьям</a></footer>
+</article>
