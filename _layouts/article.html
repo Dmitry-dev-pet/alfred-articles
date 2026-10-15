@@ -6,7 +6,7 @@ layout: default
 <div class="eyebrow">{{ page.category | escape }} · Авторская редакция</div>
 <h1>{{ page.title | escape }}</h1>
 <p class="article-subtitle">{{ page.subtitle | escape }}</p>
-<div class="article-meta"><span>{{ page.revision | escape }}</span><span>≈ {{ page.reading_minutes }} мин чтения</span><span>Черновик · 15 октября 2026</span></div>
+<div class="article-meta"><span>{{ page.revision | escape }}</span><span>≈ {{ page.reading_minutes }} мин чтения</span><span>Черновик · обновлено {{ page.preview_updated_on | default: '2026-10-15' | escape }}</span></div>
 </header>
 <details class="toc">
 <summary>Содержание</summary>
